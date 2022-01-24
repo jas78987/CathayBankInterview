@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">CathayBankInterview</string>
+    <string name="default_memo">無休館資訊</string>
+    <string name="functional_ability">功能性</string>
+    <string name="distinguish_method">辨認方式</string>
+    <string name="introduction">簡介</string>
+    <string name="alias">別名</string>
+    <string name="content_description_plant_image">植物圖片</string>
+    <string name="last_update_template">最後更新:%1$s</string>
+    <string name="content_description_zoo_detail">館區圖片</string>
+    <string name="open_in_web">在網頁開啟</string>
+    <string name="plant_data">植物資料</string>
 </resources>

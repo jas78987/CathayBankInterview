@@ -17,21 +17,20 @@ class ZooDetailPresent(
     override fun loadDetail(venue: Venue) {
         venueInfo = venue
         viewContract.displayDetail(venue)
+        viewContract.showLoading(true)
         zooDetailRepository.getRelativePlant(venue.name,object : IZooDetailRepository.IOnPlantDetailResult{
             override fun onSuccess(newList: List<PlantDetail>) {
                 plantDetailList.addAll(newList)
                 viewContract.updateList(plantDetailList)
+                viewContract.showLoading(false)
             }
 
             override fun onFailure(throwable: Throwable) {
                 viewContract.showErrorMessage(throwable)
+                viewContract.showLoading(false)
             }
 
         })
-    }
-
-    override fun backPage() {
-
     }
 
     override fun viewPlantDetail(position : Int) : PlantDetail{

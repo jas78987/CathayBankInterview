@@ -17,6 +17,7 @@ class ZooPresent(
     private val fetchCount = 10
 
     override fun reloadList() {
+        viewContract.showLoading(true)
         isReachEnd = false
         zooRepository.getZooInfo(0, fetchCount, object : IZooRepository.IOnZooResult {
             override fun onSuccess(newList: List<Venue>) {
@@ -26,10 +27,12 @@ class ZooPresent(
                 venueList.clear()
                 venueList.addAll(newList)
                 viewContract.updateList(venueList.toList())
+                viewContract.showLoading(false)
             }
 
             override fun onFailure(throwable: Throwable) {
                 viewContract.showErrorMessage(throwable.message ?: "error")
+                viewContract.showLoading(false)
             }
 
         })
@@ -39,6 +42,7 @@ class ZooPresent(
         if (isReachEnd){
             return
         }
+        viewContract.showLoading(true)
         zooRepository.getZooInfo(venueList.size, fetchCount, object : IZooRepository.IOnZooResult {
             override fun onSuccess(newList: List<Venue>) {
                 if (newList.size < fetchCount){
@@ -46,10 +50,12 @@ class ZooPresent(
                 }
                 venueList.addAll(newList)
                 viewContract.updateList(venueList.toList())
+                viewContract.showLoading(false)
             }
 
             override fun onFailure(throwable: Throwable) {
                 viewContract.showErrorMessage(throwable.message ?: "error")
+                viewContract.showLoading(false)
             }
 
         })

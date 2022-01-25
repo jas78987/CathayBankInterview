@@ -19,6 +19,7 @@ import android.text.SpannedString
 import android.text.style.URLSpan
 import android.widget.Toast
 import androidx.core.text.buildSpannedString
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cathaybankinterview.R
 import com.example.cathaybankinterview.database.DatabaseManager
@@ -128,6 +129,10 @@ class ZooDetailFragment : Fragment(), ZooDetailContract.ViewContract {
 
     override fun showErrorMessage(throwable: Throwable) {
         Toast.makeText(requireContext(), "${throwable.message}", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showLoading(enable: Boolean) {
+        binding.zooDetailProgressBar.isVisible = enable
     }
 
 }

@@ -13,6 +13,8 @@ class ZooDetailContract {
         fun updateList(newList : List<PlantDetail>)
 
         fun showErrorMessage(throwable: Throwable)
+
+        fun showLoading(enable : Boolean)
     }
 
     interface IZooDetailPresent {
@@ -21,8 +23,6 @@ class ZooDetailContract {
          * 讀取詳細的
          */
         fun loadDetail(venue: Venue)
-
-        fun backPage()
 
         fun viewPlantDetail(position : Int) : PlantDetail
 

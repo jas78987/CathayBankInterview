@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cathaybankinterview.databinding.FragmentZooBinding
@@ -86,6 +87,10 @@ class ZooFragment : Fragment(), ZooContract.ViewContract {
 
     override fun showErrorMessage(message: String) {
         Snackbar.make(binding.zooIntroductionSpace,message,Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun showLoading(enable: Boolean) {
+        binding.zooIntroductionProgressBar.isVisible = enable
     }
 
     fun setGoToZooDetailListener(listener : IGoToZooDetail){

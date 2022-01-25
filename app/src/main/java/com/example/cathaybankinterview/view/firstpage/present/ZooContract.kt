@@ -7,6 +7,8 @@ class ZooContract {
         fun updateList(newList : List<Venue>)
 
         fun showErrorMessage(message : String)
+
+        fun showLoading(enable : Boolean)
     }
 
     interface IZooPresent{

@@ -7,17 +7,4 @@
             <certificates src="system"/>
         </trust-anchors>
     </base-config>
-<!--    <domain-config>-->
-<!--        <domain includeSubdomains="true">www.zoo.gov.taipei</domain>-->
-<!--        <trust-anchors>-->
-<!--            <certificates src="@raw/pb_taipei"/>-->
-<!--        </trust-anchors>-->
-<!--    </domain-config>-->
-<!--    <domain-config>-->
-<!--        <domain includeSubdomains="true">www.zoo.gov.tw</domain>-->
-<!--        <trust-anchors>-->
-<!--            <certificates src="@raw/www_zoo_gov_tw"/>-->
-<!--        </trust-anchors>-->
-<!--    </domain-config>-->
-
 </network-security-config>

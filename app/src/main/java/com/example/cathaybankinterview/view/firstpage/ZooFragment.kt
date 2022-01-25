@@ -63,8 +63,14 @@ class ZooFragment : Fragment(), ZooContract.ViewContract {
                 goToZooDetailListener?.goToZooDetailPage(present.viewDetail(position))
             }
         })
+        val layoutManager = LinearLayoutManager(requireContext())
+        binding.zooIntroductionRecyclerView.layoutManager = layoutManager
+        binding.zooIntroductionRecyclerView.addOnScrollListener(object : EndlessScrollListener(layoutManager){
+            override fun onLoadMore(page: Int, totalItemsCount: Int) {
+                present.loadMoreList()
+            }
 
-        binding.zooIntroductionRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        })
         binding.zooIntroductionRecyclerView.adapter = listAdapter
 
     }

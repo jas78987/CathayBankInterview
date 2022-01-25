@@ -12,9 +12,17 @@ class ZooPresent(
 
     private val venueList = mutableListOf<Venue>()
 
+    private var isReachEnd = false
+
+    private val fetchCount = 10
+
     override fun reloadList() {
-        zooRepository.getZooInfo(0, 10, object : IZooRepository.IOnZooResult {
+        isReachEnd = false
+        zooRepository.getZooInfo(0, fetchCount, object : IZooRepository.IOnZooResult {
             override fun onSuccess(newList: List<Venue>) {
+                if (newList.size < fetchCount){
+                    isReachEnd = true
+                }
                 venueList.clear()
                 venueList.addAll(newList)
                 viewContract.updateList(venueList.toList())
@@ -28,8 +36,14 @@ class ZooPresent(
     }
 
     override fun loadMoreList() {
-        zooRepository.getZooInfo(0, 10, object : IZooRepository.IOnZooResult {
+        if (isReachEnd){
+            return
+        }
+        zooRepository.getZooInfo(venueList.size, fetchCount, object : IZooRepository.IOnZooResult {
             override fun onSuccess(newList: List<Venue>) {
+                if (newList.size < fetchCount){
+                    isReachEnd = true
+                }
                 venueList.addAll(newList)
                 viewContract.updateList(venueList.toList())
             }

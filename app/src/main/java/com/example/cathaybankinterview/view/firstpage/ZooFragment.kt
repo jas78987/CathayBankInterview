@@ -88,10 +88,6 @@ class ZooFragment : Fragment(), ZooContract.ViewContract {
         Snackbar.make(binding.zooIntroductionSpace,message,Snackbar.LENGTH_SHORT).show()
     }
 
-    override fun xxxx(siteName: String): String {
-        return siteName
-    }
-
     fun setGoToZooDetailListener(listener : IGoToZooDetail){
         goToZooDetailListener = listener
     }

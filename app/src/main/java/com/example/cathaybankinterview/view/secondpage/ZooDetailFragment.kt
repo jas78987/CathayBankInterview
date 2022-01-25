@@ -21,6 +21,7 @@ import android.widget.Toast
 import androidx.core.text.buildSpannedString
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cathaybankinterview.R
+import com.example.cathaybankinterview.database.DatabaseManager
 import com.example.cathaybankinterview.extention.loadImageUrl
 
 
@@ -69,12 +70,15 @@ class ZooDetailFragment : Fragment(), ZooDetailContract.ViewContract {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
 
-        present = ZooDetailPresent(this, ZooDetailRepository(ApiManager.openDataService))
+        present = ZooDetailPresent(
+            this,
+            ZooDetailRepository(ApiManager.openDataService, DatabaseManager.getInstance())
+        )
         present.loadDetail(venueInfo!!)
     }
 
     private fun initRecyclerView() {
-        listAdapter = PlantDataListAdapter(object : PlantDataItemClickListener{
+        listAdapter = PlantDataListAdapter(object : PlantDataItemClickListener {
             override fun onItemClick(position: Int, view: View) {
                 goToPlantDetailListener?.goToPlantDetailPage(present.viewPlantDetail(position))
             }

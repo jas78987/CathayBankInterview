@@ -30,7 +30,7 @@ class ZooRepository(private val service : OpenDataService) : IZooRepository {
                             id = it.id ?: -1,
                             webUrl = it.eURL.orEmpty()
                         )
-                    } ?: error("")
+                    } ?: error("取得動物園資訊錯誤")
                     callback.onSuccess(newList)
                 } catch (exception : Exception){
                     callback.onFailure(exception)

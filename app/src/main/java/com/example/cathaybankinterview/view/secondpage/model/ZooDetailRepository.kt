@@ -74,7 +74,7 @@ class ZooDetailRepository(private val service: OpenDataService, private val data
                                     updateTime = it.fUpdate.orEmpty(),
                                     locationList = locationList
                                 )
-                            } ?: error("")
+                            } ?: error("取得相關植物資訊錯誤")
                             callback.onSuccess(newList.filter { it.locationList.contains(placeName) }
                                 .distinctBy { it.chineseName })
                         } catch (exception: Exception) {

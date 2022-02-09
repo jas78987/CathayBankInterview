@@ -76,7 +76,12 @@ class ZooDetailFragment : Fragment(), ZooDetailContract.ViewContract {
             this,
             ZooDetailRepository(ApiManager.openDataService, DatabaseManager.getInstance())
         )
-        present.loadDetail(venueInfo!!)
+        val info = venueInfo
+        if (info == null){
+            showErrorMessage(Exception("無法取得詳細資訊"))
+        } else {
+            present.loadDetail(info)
+        }
     }
 
     private fun initRecyclerView() {
@@ -129,7 +134,9 @@ class ZooDetailFragment : Fragment(), ZooDetailContract.ViewContract {
     }
 
     override fun showErrorMessage(throwable: Throwable) {
-        Toast.makeText(requireContext(), "${throwable.message}", Toast.LENGTH_SHORT).show()
+        context?.apply {
+            Toast.makeText(this, "${throwable.message}", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun showLoading(enable: Boolean) {

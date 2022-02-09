@@ -16,6 +16,7 @@ import com.example.cathaybankinterview.view.thirdpage.PlantDetail
 import android.content.Intent
 import android.net.Uri
 import android.text.SpannedString
+import android.text.method.LinkMovementMethod
 import android.text.style.URLSpan
 import android.widget.Toast
 import androidx.core.text.buildSpannedString
@@ -70,7 +71,7 @@ class ZooDetailFragment : Fragment(), ZooDetailContract.ViewContract {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
-
+        binding.zooDetailOpenInWebTextView.movementMethod = LinkMovementMethod.getInstance()
         present = ZooDetailPresent(
             this,
             ZooDetailRepository(ApiManager.openDataService, DatabaseManager.getInstance())
